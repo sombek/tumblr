@@ -5,15 +5,18 @@ class PostsController < ApplicationController
 	end
 
 	def new
+		@post = Post.new
 	end
 
 	def create
 		@post = Post.new(post_params)
-		@post.save 
 
-		redirect_to @post
+		if @post.save 
+			redirect_to@post #!redirect does http refresh for more go to 006 in 4:00 mintus 
+		else 
+			render 'new'
+		end
 	end
-
 	def show 
 		@post = Post.find(params[:id])
 	end
