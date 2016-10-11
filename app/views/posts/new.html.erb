@@ -1,20 +1,23 @@
-<h1>Make something</h1>
+<div id="page_wrapper">
 
-<%= form_for :post, url: posts_path do |f| %>
-	<p>
-		<%= f.label :title %><br>
-		<%= f.text_field :title %>
-	</p>
+	<h1>Make something</h1>
 
-	<p>
-		<%= f.label :body %><br>
-		<%= f.text_area :body%> 
-	</p>
+	<%= form_for :post, url: posts_path do |f| %>
+		<p>
+			<%= f.label :title %><br>
+			<%= f.text_field :title %>
+		</p>
 
-	<p>
-		<%= f.submit %>
-	</p>
+		<p>
+			<%= f.label :body %><br>
+			<%= f.text_area :body%> 
+		</p>
 
-	<% end %>
-		
+		<p>
+			<%= f.submit %>
+		</p>
 
+		<% end %>
+			
+
+</div>
