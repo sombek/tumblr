@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-	
+	before_action :authenticate_user! , except: [:index, :show]
+
 	def index
 		@posts = Post.all.order('created_at DESC')
 	end
@@ -11,18 +12,18 @@ class PostsController < ApplicationController
 	def create
 		@post = Post.new(post_params)
 
-		if @post.save 
-			redirect_to@post #!redirect does http refresh for more go to 006 in 4:00 mintus 
-		else 
+		if @post.save
+			redirect_to@post #!redirect does http refresh for more go to 006 in 4:00 mintus
+		else
 			render 'new'
 		end
 	end
 
-	def show 
+	def show
 		@post = Post.find(params[:id])
 	end
 
-	def edit 
+	def edit
 		@post = Post.find(params[:id])
 	end
 
@@ -30,7 +31,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		if @post.update(params[:post].permit(:title, :body))
 			redirect_to @post
-		else 
+		else
 			render 'edit'
 		end
 	end
@@ -38,11 +39,11 @@ class PostsController < ApplicationController
 	def destroy
 		@post = Post.find(params[:id])
 		@post.destroy
-		
+
 		redirect_to root_path
 	end
 
-	private 
+	private
 		def post_params
 			params.require(:post).permit(:title, :body)
 		end
